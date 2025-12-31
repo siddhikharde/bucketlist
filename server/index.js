@@ -49,7 +49,9 @@ app.post("/bucketlist", async (req, res)=>{
 });
 app.get("/bucketlist", async(req,res)=>{
   try{
-    const bucketList=await BucketList.find();
+    const bucketList=await BucketList.find().sort({
+      isCompleted:1, priority:1
+    });
     return res.json({
       success:true,
       message:"data fected succesfully",
