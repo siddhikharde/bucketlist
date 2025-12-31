@@ -47,7 +47,22 @@ app.post("/bucketlist", async (req, res)=>{
   }
   
 });
-
+app.get("/bucketlist", async(req,res)=>{
+  try{
+    const bucketList=await BucketList.find();
+    return res.json({
+      success:true,
+      message:"data fected succesfully",
+      data:bucketList
+    })
+  }catch(e){
+    return res.json({
+      succes:false,
+      message:"failed to fetch data ",
+      error:e.message
+    })
+  }
+})
 app.patch("/bucketlist/:id/complete", async(req, res) => {
   const {id}=req.params;
  try{
